@@ -223,7 +223,7 @@ services:
       - ./tailscale/var/run/tailscale:/var/run/tailscale # Persist state data
       - /dev/net/tun:/dev/net/tun # Required for network tunneling
       environment:
-         - TS_AUTHKEY=tskey-auth-kk2b7UXviw11CNTRL-uRni7LK1E5NGPKQHvEV55NCKHvqycV721 # Replace with your generated auth key
+         - TS_AUTHKEY=tskey-auth-kP45U4wCPX11CNTRL-WweepUoDRD9Py3TcXydYD9rGXi4cPkyy # Replace with your generated auth key
          - TS_STATE_DIR=/var/run/tailscale # Specify state directory
          - TS_ACCEPT_DNS=true # Optional: Accept DNS configuration from admin console
          # Optional: To enable Subnet Routing, add:

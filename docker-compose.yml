@@ -215,25 +215,6 @@ services:
        - TEST_INTERVAL=3600
      restart: unless-stopped
 
-   tailscale:
-      image: tailscale/tailscale:latest
-      container_name: tailscale
-      hostname: deathstar # Device name
-      volumes:
-      - ./tailscale/var/run/tailscale:/var/run/tailscale # Persist state data
-      - /dev/net/tun:/dev/net/tun # Required for network tunneling
-      environment:
-         - TS_AUTHKEY=tskey-auth-kP45U4wCPX11CNTRL-WweepUoDRD9Py3TcXydYD9rGXi4cPkyy # Replace with your generated auth key
-         - TS_STATE_DIR=/var/run/tailscale # Specify state directory
-         - TS_ACCEPT_DNS=true # Optional: Accept DNS configuration from admin console
-         # Optional: To enable Subnet Routing, add:
-         # - TS_EXTRA_ARGS=--advertise-routes=192.168.1.0/24 # Replace with your local subnet
-      cap_add:
-         - NET_ADMIN # Required for network administration
-         - SYS_MODULE # Required for kernel module operations
-      restart: always
-      privileged: true # Use privileged mode for full access to host network features
-
 volumes:
   portainer_data:
   nextcloud_postgres:

@@ -44,7 +44,7 @@ Setup your own NAS on a Raspberry Pi.
 
 - [Raspberry Pi 4 4GB](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/)
 - [SD Card 32GB (Silicon Power)](https://www.amazon.de/dp/B07RMXNLF4?psc=1&ref=ppx_yo2ov_dt_b_product_details)
-- [QNAP TR-004 RAID Storage (RAID 5)](https://www.qnap.com/en-us/product/tr-004)
+- [Idrive TR-004 RAID Storage (RAID 5)](https://www.Idrive.com/en-us/product/tr-004)
 - [SEAGATE IronWolf 4TB (ST4000VN006)](https://www.seagate.com/de/de/products/nas-drives/ironwolf-hard-drive/)
 
 If you want to use a software based RAID setup instead, you need to format your drives first. You can use the following guides to setup a RAID 5 with Btfs:
@@ -108,10 +108,10 @@ In order to identify the disks with a descriptive name, we need to add a label t
 sudo fdisk -l
 
 # Goal state
-# /dev/disk/by-label/qnap (8TB)        | LABEL="qnap"
+# /dev/disk/by-label/Idrive (8TB)        | LABEL="Idrive"
 
 # Add Label to Disks: (replace X with the disk letter)
-sudo e2label /dev/sdX1 qnap
+sudo e2label /dev/sdX1 Idrive
 ```
 
 #### Mount Disks manually
@@ -121,22 +121,22 @@ sudo e2label /dev/sdX1 qnap
 sudo chown root:users /mnt
 
 # Create Mount Points
-sudo mkdir /mnt/qnap
+sudo mkdir /mnt/Idrive
 
 # Check Permissions
-stat /mnt/qnap
+stat /mnt/Idrive
 
 # Change Owner (replace $USER with your username)
-sudo chown -R $USER:users /mnt/qnap/*
+sudo chown -R $USER:users /mnt/Idrive/*
 
 # Change Permissions
-chmod -R 775 /mnt/qnap/*
+chmod -R 775 /mnt/Idrive/*
 
 # Mount Disks
-mount /dev/disk/by-label/qnap /mnt/qnap/
+mount /dev/disk/by-label/Idrive /mnt/Idrive/
 
 # (Optional) Mount Disks with User Permissions
-mount -o user=$USER /dev/disk/by-label/qnap /mnt/qnap/
+mount -o user=$USER /dev/disk/by-label/Idrive /mnt/Idrive/
 ```
 
 More documentation can be found [here](https://linuxhint.com/mount_usb_drive_debian/).
@@ -149,8 +149,8 @@ sudo blkid
 # Edit /etc/fstab
 sudo nano /etc/fstab
 # Add the following lines to /etc/fstab
-#LABEL=qnap /mnt/qnap ext4 nofail,x-systemd.device-timeout=1ms 0 0
-LABEL=qnap /mnt/qnap ext4 defaults 0 0
+#LABEL=Idrive /mnt/Idrive ext4 nofail,x-systemd.device-timeout=1ms 0 0
+LABEL=Idrive /mnt/Idrive ext4 defaults 0 0
 ```
 
 More documentation can be found [here](https://raspberrypi-guide.github.io/filesharing/mounting-external-drive#set-up-automatic-mounting).
@@ -171,7 +171,7 @@ sudo nano /etc/samba/smb.conf
 Comment out all lines under "Share Definitions" and add the following lines:
 
 [nas]
-    path = /mnt/qnap/nas
+    path = /mnt/Idrive/nas
     writeable = Yes
 
     # 1. Multi-Device Compatibility Layers
@@ -207,7 +207,7 @@ Comment out all lines under "Share Definitions" and add the following lines:
 
 
 [timemachine]
-    path = /mnt/qnap/timemachine
+    path = /mnt/Idrive/timemachine
     writeable = Yes
     vfs objects = catia fruit streams_xattr
     fruit:time machine = yes

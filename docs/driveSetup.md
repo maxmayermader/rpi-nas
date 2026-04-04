@@ -1,6 +1,6 @@
-# RPi NAS — Drive Setup & Wipe Tutorial
+# pi NAS — Drive Setup & Wipe Tutorial
 
-A guide for setting up and wiping drives on a Raspberry Pi NAS following the [timoknapp/rpi-nas](https://github.com/timoknapp/rpi-nas) repo.
+A guide for setting up and wiping drives on a Raspberry Pi NAS following the [timoknapp/pi-nas](https://github.com/timoknapp/pi-nas) repo.
 
 ---
 
@@ -9,7 +9,7 @@ A guide for setting up and wiping drives on a Raspberry Pi NAS following the [ti
 Before touching any drives, stop all running Docker containers to avoid data corruption or locked mounts:
 
 ```bash
-cd ~/rpi-nas
+cd ~/pi-nas
 docker-compose down
 
 # Full clean slate (removes volumes too)
@@ -204,7 +204,7 @@ For a Raspberry Pi 4 (4GB RAM):
 Keep passwords out of `docker-compose.yml` by using a `.env` file:
 
 ```bash
-nano ~/rpi-nas/.env
+nano ~/pi-nas/.env
 ```
 
 ```env
@@ -226,7 +226,7 @@ POSTGRES_PASSWORD=yourpassword
 Add to `.gitignore` so it's never committed:
 
 ```bash
-echo ".env" >> ~/rpi-nas/.gitignore
+echo ".env" >> ~/pi-nas/.gitignore
 ```
 
 Verify all variables resolve before starting containers:
@@ -240,7 +240,7 @@ docker-compose config
 ## Start Containers
 
 ```bash
-cd ~/rpi-nas
+cd ~/pi-nas
 docker-compose up -d
 ```
 

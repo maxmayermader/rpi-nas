@@ -29,24 +29,6 @@ Paste the following config:
   interval = "10s"
   round_interval = true
   metric_batch_size = 1000
-  metric_buffer_limit = 10000  flush_interval = "10s"
-
-# Output to InfluxDB v2
-[[outputs.influxdb_v2]]
-  urls = ["http://influxdb:8086"]
-  token = "YOUR_API_TOKEN"
-  organization = "homelab"
-  bucket = "telegraf"
-
-# CPU
-[[inputs.cpu]]
-  percpu = true
-  totalcpu = true
- 
-[agent]
-  interval = "10s"
-  round_interval = true
-  metric_batch_size = 1000
   metric_buffer_limit = 10000
   flush_interval = "10s"
 

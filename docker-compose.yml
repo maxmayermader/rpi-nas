@@ -278,6 +278,7 @@ volumes:
   nextcloud:
   grafana-storage:
   influxdb-storage:
+  immich_model_cache:
 
 networks:
   influxdb:

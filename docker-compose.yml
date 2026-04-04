@@ -177,7 +177,8 @@ services:
       - influxdb
     volumes:
       - ${PATH_TO_DISK}/appdata/monitoring/telegraf:/etc/telegraf
-    restart: always
+      - /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp:ro 
+   restart: always
 
    influxdb:
     image: influxdb:latest

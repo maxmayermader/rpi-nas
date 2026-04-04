@@ -60,7 +60,7 @@ services:
       - PUID=${USER_ID}
       - PGID=${GROUP_ID}
       - TZ=${TZ}
-      - JELLYFIN_PublishedServerUrl=192.168.68.62 # Optional: Change to your Pi's IP
+      - JELLYFIN_PublishedServerUrl={LOCAL_TAIL_HOST} # Optional: Change to your Pi's IP
     volumes:
       - ${PATH_TO_DATA}/appdata/jellyfin:/config
       - ${PATH_TO_DATA}/media/tv:/data/tvshows
@@ -70,7 +70,6 @@ services:
       - 8920:8920 # Optional: HTTPS port
     devices:
       - /dev/dri:/dev/dri # Essential for Hardware Acceleration on Pi 5
-      - /dev/vchiq:/dev/vchiq # Legacy video support
     restart: unless-stopped
 
   # cloudcmd: # UI based filemanager
@@ -177,7 +176,7 @@ services:
       - influxdb
     volumes:
       - ${PATH_TO_DISK}/appdata/monitoring/telegraf:/etc/telegraf
-      - /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp:ro 
+      - /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp:ro
    restart: always
 
    influxdb:

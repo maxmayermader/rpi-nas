@@ -29,14 +29,32 @@ Paste the following config:
   interval = "10s"
   round_interval = true
   metric_batch_size = 1000
-  metric_buffer_limit = 10000
-  flush_interval = "10s"
+  metric_buffer_limit = 10000  flush_interval = "10s"
 
 # Output to InfluxDB v2
 [[outputs.influxdb_v2]]
   urls = ["http://influxdb:8086"]
   token = "YOUR_API_TOKEN"
   organization = "homelab"
+  bucket = "telegraf"
+
+# CPU
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+ 
+[agent]
+  interval = "10s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  flush_interval = "10s"
+
+# Output to InfluxDB
+[[outputs.influxdb_v2]]
+  urls = ["http://influxdb:8086"]
+  token = "1O-eYxPSmE57qvucDcMoaRvuAVY9lucW9Egl9GFb8UF3zhqxe5bgVtxDZD_XdPvuryF0vHBoIrPr623sdCUa0w=="
+  organization = "deathstar"
   bucket = "telegraf"
 
 # CPU
@@ -53,6 +71,9 @@ Paste the following config:
 [[inputs.disk]]
   ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
 
+# Swap
+[[inputs.swap]]
+
 # Disk I/O
 [[inputs.diskio]]
 
@@ -65,12 +86,15 @@ Paste the following config:
 # Processes
 [[inputs.processes]]
 
-# CPU Temperature (Raspberry Pi)
+# Temperature (Raspberry Pi)
 [[inputs.file]]
   files = ["/sys/class/thermal/thermal_zone0/temp"]
   name_override = "cpu_temperature"
   data_format = "value"
   data_type = "integer"
+
+# Kernel (context switches, forks, interrupts)
+[[inputs.kernel]]
 ```
 
 Also add the thermal sensor mount to the `telegraf` service in `docker-compose.yml`:

@@ -141,7 +141,7 @@ services:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
+      - ${PATH_TO_DATA}/immich/library:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     environment:
       - DB_HOSTNAME=immich_postgres
@@ -176,7 +176,7 @@ services:
       - POSTGRES_USER=immich
       - POSTGRES_DB=immich
     volumes:
-      - ${IMMICH_DB_DATA_LOCATION}:/var/lib/postgresql/data
+      - ${PATH_TO_DATA}${IMMICH_DB_DATA_LOCATION}:/var/lib/postgresql/data
     restart: unless-stopped
 
    homebridge: # Homebridge

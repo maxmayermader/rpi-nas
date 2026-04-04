@@ -1,5 +1,3 @@
-version: "1" # can be adapapted if necessary
-
 services:
    heimdall: # Dashboard for all you Apps
     image: linuxserver/heimdall
@@ -177,7 +175,7 @@ services:
     volumes:
       - ${PATH_TO_DISK}/appdata/monitoring/telegraf:/etc/telegraf
       - /sys/class/thermal/thermal_zone0/temp:/sys/class/thermal/thermal_zone0/temp:ro
-   restart: always
+    restart: always
 
    influxdb:
     image: influxdb:latest

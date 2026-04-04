@@ -163,12 +163,12 @@ services:
       - immich_model_cache:/cache
     restart: unless-stopped
 
-  immich_redis:
+   immich_redis:
     container_name: immich_redis
     image: docker.io/valkey/valkey:9
     restart: unless-stopped
 
-  immich_postgres:
+   immich_postgres:
     container_name: immich_postgres
     image: ghcr.io/immich-app/postgres:14-vectorchord0.4.3-pgvectors0.2.0
     environment:

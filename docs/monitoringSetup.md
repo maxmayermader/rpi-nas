@@ -18,8 +18,8 @@ This stack collects system metrics from your Raspberry Pi and displays them in G
 Your compose mounts `${PATH_TO_DISK}/appdata/monitoring/telegraf` as the config directory.
 
 ```bash
-mkdir -p /mnt/qnap/appdata/monitoring/telegraf
-nano /mnt/qnap/appdata/monitoring/telegraf/telegraf.conf
+mkdir -p /mnt/Idrive/appdata/monitoring/telegraf
+nano /mnt/Idrive/appdata/monitoring/telegraf/telegraf.conf
 ```
 
 Paste the following config:

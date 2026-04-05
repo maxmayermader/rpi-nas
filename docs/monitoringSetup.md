@@ -79,7 +79,7 @@ Paste the following config:
 [[inputs.kernel]]
 ```
 
-Also add the thermal sensor mount to the `telegraf` service in `docker-compose.yml`:
+Also add the thermal sensor mount to the `telegraf` service in `docker compose.yml`:
 
 ```yaml
 volumes:
@@ -91,7 +91,7 @@ volumes:
 ## Step 2: Start the Stack
 
 ```bash
-docker-compose up -d telegraf influxdb grafana speedtest
+docker compose up -d telegraf influxdb grafana speedtest
 ```
 
 ---
@@ -127,7 +127,7 @@ Copy the token — you'll need it for both Telegraf and Grafana.
 Go back and paste it into `telegraf.conf` where it says `YOUR_API_TOKEN`, then restart Telegraf:
 
 ```bash
-docker-compose restart telegraf
+docker compose restart telegraf
 ```
 
 ---
@@ -220,5 +220,5 @@ Look for auth errors — usually means the token in `telegraf.conf` is wrong or 
 - Confirm the `Authorization: Token ...` custom header is set correctly
 
 **No temperature data**
-- Confirm the thermal file is mounted into the Telegraf container in `docker-compose.yml`
+- Confirm the thermal file is mounted into the Telegraf container in `docker compose.yml`
 - Check it exists on the host: `cat /sys/class/thermal/thermal_zone0/temp`

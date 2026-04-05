@@ -35,7 +35,7 @@ Paste the following config:
 # Output to InfluxDB
 [[outputs.influxdb_v2]]
   urls = ["http://influxdb:8086"]
-  token = "1O-eYxPSmE57qvucDcMoaRvuAVY9lucW9Egl9GFb8UF3zhqxe5bgVtxDZD_XdPvuryF0vHBoIrPr623sdCUa0w=="
+  token = "token"
   organization = "deathstar"
   bucket = "telegraf"
 

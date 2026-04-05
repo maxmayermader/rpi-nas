@@ -13,6 +13,24 @@ services:
       - 443:443
     restart: unless-stopped
 
+   homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    ports:
+      - 80:3000
+      - 443:3443
+    volumes:
+      - ${PATH_TO_DISK}/appdata/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # optional: enables Docker integration
+    environment:
+      - PUID=${USER_ID}
+      - PGID=${GROUP_ID}
+      - TZ=${TZ}
+      - HOMEPAGE_ALLOWED_HOSTS=deathstar,${LOCAL_TAIL_HOST},deathstar:80,${LOCAL_TAIL_HOST}:80,${LOCAL_HOST}:80
+    group_add:
+      - "983"
+    restart: unless-stopped
+
    portainer: # UI based management of Docker
     image: portainer/portainer-ce
     container_name: portainer

@@ -211,17 +211,6 @@ services:
       start_period: 20s
     restart: unless-stopped
 
-  # homeassistant: # homeassistant
-  #   image: homeassistant/raspberrypi4-homeassistant:stable
-  #   container_name: home-assistant
-  #   environment:
-  #     - TZ=Europe/Berlin
-  #   volumes:
-  #     - ${PATH_TO_DISK}/appdata/homeassistant:/config
-  #   ports:
-  #     - 8123:8123
-  #   restart: unless-stopped
-
   ## Monitoring Stack:
    telegraf:
     image: telegraf:latest

@@ -1,18 +1,4 @@
 services:
-   heimdall: # Dashboard for all you Apps
-    image: linuxserver/heimdall
-    container_name: heimdall
-    environment:
-      - PUID=${USER_ID}
-      - PGID=${GROUP_ID}
-      - TZ=${TZ}
-    volumes:
-      - ${PATH_TO_DISK}/appdata/heimdall:/config
-    ports:
-      - 80:80
-      - 443:443
-    restart: unless-stopped
-
    homepage:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
@@ -197,36 +183,17 @@ services:
       - ${PATH_TO_DATA}${IMMICH_DB_DATA_LOCATION}:/var/lib/postgresql/data
     restart: unless-stopped
 
-   homebridge: # Homebridge
-    image: homebridge/homebridge:latest
-    network_mode: host
-    volumes:
-      - ${PATH_TO_DISK}/appdata/homebridge:/homebridge
-    logging:
-      driver: json-file
-      options:
-        max-size: "10mb"
-        max-file: "1"
-    restart: unless-stopped
-
-   deconz: # deCONZ
-    image: deconzcommunity/deconz
-    container_name: deconz
-    ports:
-      - 8888:80
-      - 8443:443
-    volumes:
-      - ${PATH_TO_DISK}/appdata/deconz:/opt/deCONZ
-    devices:
-      - /dev/ttyUSB0 # USB device for Conbee II
+   homeassistant:
+    image: ghcr.io/home-assistant/home-assistant:stable
+    container_name: home-assistant
     environment:
-      - DECONZ_WEB_PORT=8888
-      - DECONZ_WS_PORT=8443
-      - DEBUG_INFO=1
-      - DEBUG_APS=0
-      - DEBUG_ZCL=0
-      - DEBUG_ZDP=0
-      - DEBUG_OTA=0
+      - TZ=${TZ}
+    volumes:
+      - ${PATH_TO_DISK}/appdata/homeassistant:/config
+    ports:
+      - 8123:8123
+    network_mode: host  # recommended — HA needs host networking for mDNS/device discovery
+    privileged: true    # needed for USB/Bluetooth device access
     restart: unless-stopped
 
   # homeassistant: # homeassistant

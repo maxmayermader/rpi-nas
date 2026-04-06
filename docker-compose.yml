@@ -196,6 +196,21 @@ services:
     privileged: true    # needed for USB/Bluetooth device access
     restart: unless-stopped
 
+   actualbudget:
+    image: actualbudget/actual-server:latest
+    container_name: actualbudget
+    ports:
+      - 5006:5006
+    volumes:
+      - ${PATH_TO_DISK}/appdata/actualbudget:/data
+    healthcheck:
+      test: ['CMD-SHELL', 'node src/scripts/health-check.js']
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+    restart: unless-stopped
+
   # homeassistant: # homeassistant
   #   image: homeassistant/raspberrypi4-homeassistant:stable
   #   container_name: home-assistant

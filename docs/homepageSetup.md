@@ -46,7 +46,6 @@ Homepage hot-reloads on save — no container restart needed.
         description: Media Server
         icon: jellyfin.png
         container: jellyfin
-
     - Navidrome:
         href: http://YOUR_TAILSCALE_IP:4533
         description: Music Streaming
@@ -59,7 +58,6 @@ Homepage hot-reloads on save — no container restart needed.
         description: Photo Backup
         icon: immich.png
         container: immich_server
-
     - Nextcloud:
         href: http://YOUR_TAILSCALE_IP:8081
         description: File Storage
@@ -67,12 +65,16 @@ Homepage hot-reloads on save — no container restart needed.
         container: nextcloud
 
 - Monitoring & Network:
+    - Portainer:
+        href: http://YOUR_TAILSCALE_IP:9000
+        description: Docker Management
+        icon: portainer.png
+        container: portainer
     - Grafana:
         href: http://YOUR_TAILSCALE_IP:3000
         description: Metrics Dashboard
         icon: grafana.png
         container: grafana
-
     - Pi-hole:
         href: http://YOUR_TAILSCALE_IP:8080/admin
         description: DNS & Ad Blocking
@@ -81,6 +83,20 @@ Homepage hot-reloads on save — no container restart needed.
           type: pihole
           url: http://pihole:80
           key: YOUR_PIHOLE_API_KEY
+
+- Home:
+    - Home Assistant:
+        href: http://YOUR_TAILSCALE_IP:8123
+        description: Home Automation
+        icon: home-assistant.png
+        container: home-assistant
+
+- Finance:
+    - Actual Budget:
+        href: http://YOUR_TAILSCALE_IP:5006
+        description: Personal Finance
+        icon: actual-budget.png
+        container: actualbudget
 ```
 
 > **Pi-hole API key:** Run `docker exec pihole pihole -a -g` or get it from Pi-hole UI → Settings → API → Show API token.

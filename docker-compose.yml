@@ -55,6 +55,17 @@ services:
       - TUNNEL_TOKEN=
     restart: unless-stopped
 
+   vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    ports:
+      - 8082:80
+    volumes:
+      - ${PATH_TO_DISK}/appdata/vaultwarden:/data
+    environment:
+      - TZ=${TZ}
+    restart: unless-stopped
+
    jellyfin:
     image: lscr.io/linuxserver/jellyfin:latest
     container_name: jellyfin

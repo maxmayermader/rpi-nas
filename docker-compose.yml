@@ -64,6 +64,7 @@ services:
       - ${PATH_TO_DISK}/appdata/vaultwarden:/data
     environment:
       - TZ=${TZ}
+      - DOMAIN=https://${TAIL_DNS}:8082
     restart: unless-stopped
 
    jellyfin:

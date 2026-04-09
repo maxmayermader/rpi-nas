@@ -59,7 +59,7 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     ports:
-      - 8082:80
+      - 8082:8082
     volumes:
       - ${PATH_TO_DISK}/appdata/vaultwarden:/data
       - /home/max/certs:/certs:ro

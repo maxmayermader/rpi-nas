@@ -62,8 +62,11 @@ services:
       - 8082:80
     volumes:
       - ${PATH_TO_DISK}/appdata/vaultwarden:/data
+      - /home/max/certs:/certs:ro
     environment:
       - TZ=${TZ}
+      - ROCKET_TLS={certs="/certs/deathstar.your-tailnet.ts.net.crt",key="/certs/deathstar.your-tailnet.ts.net.key"}
+      - ROCKET_PORT=8082
       - DOMAIN=https://${TAIL_DNS}:8082
     restart: unless-stopped
 

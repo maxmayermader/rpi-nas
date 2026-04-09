@@ -65,7 +65,7 @@ services:
       - /home/max/certs:/certs:ro
     environment:
       - TZ=${TZ}
-      - ROCKET_TLS={certs="/certs/deathstar.your-tailnet.ts.net.crt",key="/certs/deathstar.your-tailnet.ts.net.key"}
+      - ROCKET_TLS={certs="/deathstar.taila66ab2.ts.net.crt",key="/certs/deathstar.taila66ab2.ts.net.key"}
       - ROCKET_PORT=8082
       - DOMAIN=https://${TAIL_DNS}:8082
     restart: unless-stopped

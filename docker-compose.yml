@@ -216,6 +216,9 @@ services:
     container_name: actualbudget
     ports:
       - 5006:5006
+    environment:
+      - ACTUAL_HTTPS_KEY=/certs/${TAIL_DNS}.key
+      - ACTUAL_HTTPS_CERT=/certs/${TAIL_DNS}.crt
     volumes:
       - ${PATH_TO_DISK}/appdata/actualbudget:/data
     healthcheck:

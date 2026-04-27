@@ -221,6 +221,7 @@ services:
       - ACTUAL_HTTPS_CERT=/certs/${TAIL_DNS}.crt
     volumes:
       - ${PATH_TO_DISK}/appdata/actualbudget:/data
+      - /home/max/certs:/certs:ro 
     healthcheck:
       test: ['CMD-SHELL', 'node src/scripts/health-check.js']
       interval: 60s
